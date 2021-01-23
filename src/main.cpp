@@ -62,6 +62,9 @@ float invPitchProportion = 0;
 int16_t intInvRollProportion = 0;
 int16_t intInvPitchProportion = 0;
 
+int16_t rightStickX;
+int16_t rightStickY;
+
 uint8_t controllerConnected();
 
 int main(void)
@@ -137,6 +140,9 @@ int main(void)
       
       intInvRollProportion = rollProportion * -1;
       intInvPitchProportion = pitchProportion * -1;
+
+      rightStickX = invRollProportion * 32767;
+      rightStickY = invPitchProportion * 32767;
     }
 
     Serial1.print("Raw X: ");
@@ -220,7 +226,12 @@ int main(void)
     Serial1.print("Inverted Roll Proportion (int): ");
     Serial1.println(intInvRollProportion);
     Serial1.print("Inverted Pitch Proportion (int): ");
-    Serial1.println(intInvPitchProportion);    
+    Serial1.println(intInvPitchProportion);
+
+    Serial1.print("Right Stick X: ");
+    Serial1.println(rightStickX);
+    Serial1.print("Right Stick Y: ");
+    Serial1.println(rightStickY);    
 
     delay(100);
   }
